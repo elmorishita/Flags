@@ -1,12 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Flags.Models
 {
-    public class FlagContext : Controller
+    public class FlagContext : DbContext
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+
+        public FlagContext(DbContextOptions<FlagContext> options) : base(options)
+        { }
+
+        public DbSet<Flag> Flags { get; set; } = null!;
+
+     
     }
 }
